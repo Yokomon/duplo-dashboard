@@ -1,15 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { ToastContext } from "./context/ToastContext";
+import { Home } from "./Home";
+import { Dashboard } from "./dashboard/Dashboard";
+import Login from "./admin/Login";
+import { AdminDashboard } from "./admin/AdminDashboard";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "about",
+    element: <div>About</div>,
+  },
+  { path: "home", element: <Home /> },
+  { path: "dashboard", element: <Dashboard /> },
+  { path: "admin", element: <Login /> },
+  { path: "admin-dashboard", element: <AdminDashboard /> },
+]);
+
+createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <ToastContext />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
